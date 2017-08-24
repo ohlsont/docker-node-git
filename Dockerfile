@@ -1,4 +1,11 @@
 FROM docker:git
+
+USER node
+
+RUN mkdir /home/node/.npm-global
+ENV PATH=/home/node/.npm-global/bin:$PATH
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+
 ENV VERSION=v8.4.0 NPM_VERSION=5 YARN_VERSION=latest
 
 # For base builds
