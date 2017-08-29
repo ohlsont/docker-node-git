@@ -10,6 +10,6 @@ RUN apk add --no-cache \
 		git \
 		openrc \
 		openssh-client
-RUN sysctl -w kernel.grsecurity.chroot_deny_chmod=0
+		
 RUN rc-update add docker boot
 CMD ["sh"]
