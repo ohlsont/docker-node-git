@@ -10,8 +10,8 @@ RUN addgroup -g 1000 node \
         libstdc++ \
     && apk add --no-cache \
         python \
-				node \
-				npm \
+				nodejs \
+				nodejs-npm \
 				yarn
 
 CMD [ "node" ]
