@@ -1,8 +1,7 @@
-FROM node:alpine
+FROM hink/docker-node-git:docker-node
 
 RUN apk add --no-cache \
 		ca-certificates
-RUN apk add --update alpine-sdk
 RUN apk add --no-cache \
 		make \
 		python \
