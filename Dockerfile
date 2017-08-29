@@ -7,6 +7,7 @@ RUN apk add --no-cache \
 		make \
 		python \
 		docker \
+		dockerd \
 		git \
 		openrc \
 		openssh-client
