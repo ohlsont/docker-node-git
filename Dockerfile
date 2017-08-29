@@ -9,5 +9,5 @@ RUN apk add --no-cache \
 		docker \
 		git \
 		openssh-client
-
+RUN rc-update add docker boot
 CMD ["sh"]
