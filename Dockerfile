@@ -1,18 +1,13 @@
-FROM hink/docker-node-git:docker-node
-
-RUN apk add --no-cache \
-		ca-certificates
-RUN apk add --no-cache \
+FROM circleci/golang:latest
+RUN curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+RUN sudo apt-get install nodejs \
+		ca-certificates \
 		make \
 		python \
-		docker \
-		git \
 		openrc \
 		openssh-client
 
-RUN rc-update add docker boot
-
 VOLUME ["/var/run/docker.sock"]
-RUN npm install --unsafe-perm --global --production resin-cli
+RUN sudo npm install --unsafe-perm --global --production resin-cli
 
 CMD ["sh"]
