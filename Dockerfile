@@ -1,6 +1,6 @@
 FROM circleci/golang:latest
 RUN curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-RUN apt-get update && apt-get install -y nodejs \
+RUN sudo apt-get install -y nodejs \
 		ca-certificates \
 		make \
 		python \
