@@ -1,7 +1,11 @@
 FROM circleci/golang:latest
 RUN curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-RUN sudo apt-get install -y nodejs \
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+RUN sudo apt-get update && sudo apt-get install -y nodejs \
 		ca-certificates \
+		yarn \
 		make \
 		python \
 		unzip \
@@ -9,15 +13,18 @@ RUN sudo apt-get install -y nodejs \
 		openssh-client
 
 VOLUME ["/var/run/docker.sock"]
-RUN sudo npm install --unsafe-perm --global --production resin-cli
+RUN sudo npm install --unsafe-perm --global --production resin-cli raven
 RUN go get -u github.com/golang/dep/cmd/dep
 
 # Protobuf
 ENV PROTOBUF_VERSION 3.5.1
+WORKDIR /tmp
 RUN curl -fsSL https://github.com/google/protobuf/releases/download/v$PROTOBUF_VERSION/protoc-$PROTOBUF_VERSION-linux-x86_64.zip -o protobuf.zip
-RUN unzip protobuf.zip
-RUN export PATH=$PATH:$(pwd)/bin
+RUN unzip protobuf.zip -d protoc3
+RUN sudo mv protoc3/bin/* /usr/local/bin/
+RUN sudo mv protoc3/include/* /usr/local/include/
 
+RUN sudo rm -r /tmp/*
 RUN go get -u github.com/golang/protobuf/protoc-gen-go
 
 CMD ["sh"]
