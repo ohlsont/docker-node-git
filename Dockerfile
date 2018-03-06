@@ -17,6 +17,7 @@ RUN sudo npm install --unsafe-perm --global --production resin-cli raven
 RUN go get -u github.com/golang/dep/cmd/dep
 RUN go get -u github.com/golang/mock/gomock
 RUN go get -u github.com/golang/mock/mockgen
+RUN go get -u github.com/kisielk/errcheck
 
 # Protobuf
 ENV PROTOBUF_VERSION 3.5.1
