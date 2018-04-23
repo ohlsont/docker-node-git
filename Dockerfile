@@ -14,10 +14,10 @@ RUN sudo apt-get update && sudo apt-get install -y nodejs \
 
 VOLUME ["/var/run/docker.sock"]
 RUN sudo npm install --unsafe-perm --global --production resin-cli raven
-RUN go get -u github.com/golang/dep/cmd/dep
-RUN go get -u github.com/golang/mock/gomock
-RUN go get -u github.com/golang/mock/mockgen
-RUN go get -u github.com/kisielk/errcheck
+RUN go get -u github.com/golang/dep/cmd/dep \
+              github.com/golang/mock/gomock \
+              github.com/golang/mock/mockgen\
+              github.com/kisielk/errcheck
 
 # Protobuf
 ENV PROTOBUF_VERSION 3.5.1
