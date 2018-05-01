@@ -13,7 +13,7 @@ RUN sudo apt-get update && sudo apt-get install -y nodejs \
 		openssh-client
 
 VOLUME ["/var/run/docker.sock"]
-RUN sudo npm install --unsafe-perm --global --production resin-cli raven
+RUN sudo npm install --unsafe-perm --global --production resin-cli@6.13 raven
 RUN go get -u github.com/golang/dep/cmd/dep \
               github.com/golang/mock/gomock \
               github.com/golang/mock/mockgen\
